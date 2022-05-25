@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox fx:id="vBox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="529.0" prefWidth="743.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.Controller">
+    <BorderPane fx:id="borderPane" prefHeight="530.0" prefWidth="821.0" style="-fx-padding: 20;">
+        <top>
+            <HBox fx:id="hbox" alignment="CENTER" prefHeight="58.0" prefWidth="743.0" style="-fx-spacing: 5;" BorderPane.alignment="CENTER">
+                <Text fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="影片URL欄位" textAlignment="RIGHT" wrappingWidth="111.64648699760437">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Text>
+                <TextField fx:id="VideoUrlField" prefHeight="30.0" prefWidth="246.0">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </TextField>
+                <Text fontSmoothingType="LCD" layoutX="10.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="存儲路徑" textAlignment="RIGHT" wrappingWidth="77.64648628234863">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Text>
+                <TextField fx:id="SavePathField" editable="false" prefHeight="30.0" prefWidth="132.0">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </TextField>
+                <Button mnemonicParsing="false" onAction="#onBroswerJButtonClick" text="瀏覽">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Button>
+                <Button layoutX="600.0" layoutY="25.0" mnemonicParsing="false" onAction="#onSubmitJButtonClick" text="提交">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Button>
+            </HBox>
+        </top>
+      <center>
+            <ScrollPane fx:id="scroll" prefHeight="387.0" prefWidth="723.0" style="-fx-padding: 10;" BorderPane.alignment="CENTER">
+                <ListView fx:id="List" prefHeight="349.0" prefWidth="712.0" />
+            </ScrollPane>
+      </center>
+    </BorderPane>
+</VBox>
