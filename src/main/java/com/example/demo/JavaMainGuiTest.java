@@ -1,6 +1,6 @@
 package com.example.demo;
 
-import com.example.demo.javafx.task.ProcessBuildDemo;
+import com.example.demo.javafx.task.DownloaderTask;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -13,13 +13,11 @@ public class JavaMainGuiTest extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        ProcessBuildDemo.runCommand();
+        DownloaderTask.runCommand();
         FXMLLoader fxmlLoader = new FXMLLoader(JavaMainGuiTest.class.getResource("hello-view.fxml"));
-//        Scene scene = new Scene(fxmlLoader.load()); // new Scene(root, 1000, 600)
         Scene scene = new Scene(fxmlLoader.load(), 1000, 600); //
         Controller controller = new Controller();
         fxmlLoader.setController(controller);
-//        stage.setResizable(false);
         stage.setTitle("Hello!");
         stage.setMinHeight(600);
         stage.setMinWidth(1000);

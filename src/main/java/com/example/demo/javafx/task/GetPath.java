@@ -10,7 +10,7 @@ public class GetPath {
             if (OSVaildator.isWindows()){
                 return System.getProperty("user.dir") + python;
             } else {
-                return System.getProperty("user.dir") + python.replaceAll("\\\\", "/");
+                return System.getProperty("user.dir") + python;
             }
         }
         return "";

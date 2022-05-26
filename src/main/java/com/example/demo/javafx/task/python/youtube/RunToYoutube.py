@@ -4,12 +4,15 @@ import re
 from pytube import YouTube
 from pytube import Playlist
 import sys
+import http.client
+http.client.HTTPConnection._http_vsn = 10
+http.client.HTTPConnection._http_vsn_str = 'HTTP/1.0'
 
 
 def video_download(video):  # TODO 下載單支影片
     try:
         title = re.sub('[\/:*?"<>|]', '-', video.title)
-        video.streams.get_highest_resolution().download(output_path=output_path, filename=title + ".mp4")
+        video.streams.order_by('resolution').desc().first().download(output_path=output_path, filename=title + ".mp4")
         try:
             try:
                 # TODO 嘗試下載 中文字幕
@@ -51,6 +54,7 @@ if 'playlist?list=' in Video_URL:  # TODO 下載影片清單
 else:  # TODO 下載單支影片
     try:
         video = YouTube(Video_URL)
+
         if not video_download(video):
             print(123)
             sys.exit(3)

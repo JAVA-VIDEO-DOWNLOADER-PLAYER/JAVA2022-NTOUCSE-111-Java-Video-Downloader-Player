@@ -1,6 +1,8 @@
 package com.example.demo;
 
-import com.example.demo.javafx.task.ProcessBuildDemo;
+import com.example.demo.javafx.task.DownloaderTask;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
@@ -12,12 +14,15 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 
+import static java.lang.Thread.sleep;
+
 public class Controller implements Initializable  {
     @FXML
-    protected ListView List;
+    protected ListView<ArrayList<String>> List;
     @FXML
     protected ScrollPane scroll;
     @FXML
@@ -36,18 +41,43 @@ public class Controller implements Initializable  {
     public void initialize(URL location, ResourceBundle resources) {
         borderPane.prefWidthProperty().bind(vBox.widthProperty());//寬度繫結為Pane寬度
         borderPane.prefHeightProperty().bind(vBox.heightProperty());
+        scroll.prefHeightProperty().bind(borderPane.heightProperty());
         List.prefWidthProperty().bind(scroll.widthProperty());
+        List.prefHeightProperty().bind(scroll.heightProperty());
+
 
     }
 
 
     @FXML
-    protected void onSubmitJButtonClick() throws IOException {
+    protected void onSubmitJButtonClick() {
+        invokeDownloaderTask();
+    }
+
+    private void invokeDownloaderTask(){
         String fetchFromVideoUrlField = VideoUrlField.getText();
         String fetchFromSavePathField = SavePathField.getText();
         System.out.println("HELLO\nVideo URL: "+fetchFromVideoUrlField+"\nPath: "+fetchFromSavePathField);
+        DownloaderTask task = new DownloaderTask(fetchFromVideoUrlField, fetchFromSavePathField);
 
-        ProcessBuildDemo.VideoDownloder(fetchFromVideoUrlField, fetchFromSavePathField);
+        task.valueProperty().addListener(
+                (observableValue, s, t1) -> {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("下載任務");
+                    alert.setContentText(t1);
+                    alert.showAndWait();
+                    try {
+                        sleep(3000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+
+                }
+        );
+        Thread backgroundThread = new Thread(task);
+        backgroundThread.setDaemon(true);
+        backgroundThread.start();
+
     }
 
     @FXML

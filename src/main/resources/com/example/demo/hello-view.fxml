@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.media.*?>
 <?import javafx.scene.text.*?>
 
 <VBox fx:id="vBox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="529.0" prefWidth="743.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.Controller">
@@ -40,10 +41,21 @@
                 </Button>
             </HBox>
         </top>
+      <left>
+          <ScrollPane fx:id="scroll" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+              <ListView fx:id="List" prefHeight="557.0" prefWidth="200.0"/>
+          </ScrollPane>
+      </left>
+      <bottom>
+          <VBox prefHeight="49.0" prefWidth="703.0" BorderPane.alignment="CENTER">
+              <Slider/>
+              <ToolBar prefHeight="40.0" prefWidth="200.0">
+                  <Button mnemonicParsing="false" text="Button"/>
+              </ToolBar>
+          </VBox>
+      </bottom>
       <center>
-            <ScrollPane fx:id="scroll" prefHeight="387.0" prefWidth="723.0" style="-fx-padding: 10;" BorderPane.alignment="CENTER">
-                <ListView fx:id="List" prefHeight="349.0" prefWidth="712.0" />
-            </ScrollPane>
+         <MediaView fitHeight="200.0" fitWidth="200.0" BorderPane.alignment="CENTER" />
       </center>
     </BorderPane>
 </VBox>
