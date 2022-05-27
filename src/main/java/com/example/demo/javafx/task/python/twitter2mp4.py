@@ -4,6 +4,8 @@ import requests
 from colorama import init,Fore,Style
 import time
 
+from CsvHandler import insertNewVideotoList
+
 init() # colorama init
 
 class getVideo():
@@ -62,11 +64,14 @@ def pretty_log(logdict):
 def save_file(url,ddir,filename):
 	fn = url.split('/')[8].split('?')[0]
 	if (filename):
-		fn = filname if '.mp4' in filename else filename+'.mp4'
+		fn = filename if '.mp4' in filename else filename+'.mp4'
 	op_dir = os.path.join(ddir, fn)
+
+	# print(op_dir)
 	with requests.get(url, stream=True) as r:
 		with open(op_dir, 'wb') as f:
 			shutil.copyfileobj(r.raw, f)
+	insertNewVideotoList(fn.replace('.mp4', ''), args.dir)
 	print('['+Fore.GREEN+'+'+Style.RESET_ALL+'] '+'File successfully saved as '+fn+' !')
 
 if sys.version_info[0] <= 2:
@@ -80,6 +85,7 @@ parser.add_argument('-fn', '--filename',type=str, default = False,dest = 'filena
 parser.add_argument('-l', '--link',dest = 'link',default = 0, action = 'count', help = 'Will output a direct URL to the video.')
 
 args = parser.parse_args()
+print(args)
 if re.match(r'https:\/\/twitter.com\/\w{1,15}\/status\/(\d{15,25})',args.url):
 	pass
 else:
@@ -94,7 +100,7 @@ try:
 	else:
 		print('['+Fore.YELLOW+'+'+Style.RESET_ALL+'] '+'Theres an internal error, hang on...')
 		pretty_log(dl.log)
-		
+
 except Exception as e:
 	pretty_log(dl.log)
 	print("Please also include details below: \n")

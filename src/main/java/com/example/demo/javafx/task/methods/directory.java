@@ -1,4 +1,4 @@
-package com.example.demo.javafx.task;
+package com.example.demo.javafx.task.methods;
 
 public class directory {
     // TODO 預設存儲資料夾之相對路徑

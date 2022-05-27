@@ -1,4 +1,4 @@
-package com.example.demo.javafx.task;
+package com.example.demo.javafx.task.methods;
 
 public class GetPath {
     private static final String python = "\\src\\main\\java\\com\\example\\demo\\javafx\\task\\python\\";

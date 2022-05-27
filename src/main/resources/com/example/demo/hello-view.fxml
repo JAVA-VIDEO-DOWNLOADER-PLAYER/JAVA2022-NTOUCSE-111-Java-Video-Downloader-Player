@@ -42,15 +42,21 @@
             </HBox>
         </top>
       <left>
-          <ScrollPane fx:id="scroll" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-              <ListView fx:id="List" prefHeight="557.0" prefWidth="200.0"/>
+          <ScrollPane fx:id="scroll" prefHeight="382.0" prefWidth="207.0" BorderPane.alignment="CENTER">
+              <TableView fx:id="table" prefHeight="200.0" prefWidth="200.0">
+                  <columns>
+                      <TableColumn fx:id="video" prefWidth="75.0" text="影片名稱"/>
+                      <TableColumn fx:id="time" prefWidth="75.0" text="當前播放時間"/>
+                      <TableColumn fx:id="path" prefWidth="75.0" text="路徑"/>
+                  </columns>
+              </TableView>
           </ScrollPane>
       </left>
       <bottom>
           <VBox prefHeight="49.0" prefWidth="703.0" BorderPane.alignment="CENTER">
-              <Slider/>
+              <Slider />
               <ToolBar prefHeight="40.0" prefWidth="200.0">
-                  <Button mnemonicParsing="false" text="Button"/>
+                  <Button mnemonicParsing="false" text="Button" />
               </ToolBar>
           </VBox>
       </bottom>
