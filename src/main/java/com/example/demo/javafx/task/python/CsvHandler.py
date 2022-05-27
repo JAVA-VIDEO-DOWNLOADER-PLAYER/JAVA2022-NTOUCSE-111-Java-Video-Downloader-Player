@@ -1,48 +1,37 @@
 import os.path
+import re
+
 import pandas as pd
 import numpy as np
 
 
-def checkIfVideoExist(title=None):
-    sheet = pd.read_csv('test.csv')
-    df = pd.DataFrame(sheet, columns=['video', 'time', 'path'])
-    arrayindex = []
-    if title is not None:
-        for i in range(len(df)):
-            video = df.loc[i, "path"] + df.loc[i, "video"] + ".mp4"
-            print(video)
-            if not os.path.exists(video):
-                arrayindex.append(i)
-        print(arrayindex)
-        df.drop(index=arrayindex, inplace=True)
+def insertNewVideotoList(title, path):
+    InsertTitle = re.sub('[\/:*?"<>|]', '-', title)
+    if os.path.exists("test.csv"):
+        # 如果 test.csv 存在，則檢查下載之影片(csv)，是否有落網之魚
+        sheet = pd.read_csv('test.csv', header=0)
+        for index in range(len(sheet)):
+            videoInCsv = sheet.loc[index, "video"]
+            if videoInCsv == InsertTitle or os.path.abspath(path+title)==True:
+                return
+        data = np.array([(title, '0', os.path.abspath(path))])
+        Newdf = pd.DataFrame(data=data, columns=['video', 'time', 'path'])
+        CombiedDf = pd.concat([sheet, Newdf], ignore_index=True)
+        # sheet.append(Newdf, ignore_index=True)
+        print(CombiedDf)
+        CombiedDf.to_csv('test.csv', index=False)
+
+
+    else:
+        # 如果 test.csv 不存在，則新建 csv 並插入新一筆資料
+        data = np.array([(title, '0', os.path.abspath(path))])
+        df = pd.DataFrame(data=data, columns=['video', 'time', 'path'])
         df.to_csv("test.csv", index=False)
+#
+# if __name__ =="__main__":
+#     data = np.array([('JavaFX Java GUI Tutorial - 18 - Simple TableView', '0', os.path.abspath('D:\\'))])
+#     Newdf = pd.DataFrame(data=data, columns=['video', 'time', 'path'])
+#     print(Newdf)
 
 
-def checkIfExist():
-    return os.path.exists("test.csv")
 
-
-def insertNewVideotoList(title, output_path):
-    if not checkIfExist():
-        # TODO 檢查 videoList 是否建立，若 False 則新建一個
-        df = pd.DataFrame(columns=['video', 'time', 'path'])
-        df.to_csv("test.csv", index=False)
-    checkIfVideoExist()
-    # TODO 讀取 CSV
-    sheet = pd.read_csv('test.csv')
-    insertVideotoList(title, output_path)
-
-
-def insertVideotoList(title, output_path):
-    sheet = pd.read_csv('test.csv')
-    df = pd.DataFrame(sheet, columns=['video', 'time', 'path'])
-    for i in range(len(df)):
-        video = df.loc[i, "video"]
-        print(video)
-        if video == title:
-            return
-    # TODO 建立輸入資料
-    data = np.array([(title, os.path.abspath(output_path), 0)])
-    # TODO 輸入資料至 CSV
-    df = pd.DataFrame.from_records(data, columns=['video', 'time', 'path'])
-    df.to_csv("test.csv", index=False)

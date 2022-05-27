@@ -43,7 +43,7 @@
         </top>
       <left>
           <ScrollPane fx:id="scroll" prefHeight="382.0" prefWidth="207.0" BorderPane.alignment="CENTER">
-              <TableView fx:id="table" prefHeight="200.0" prefWidth="200.0">
+              <TableView fx:id="VideoListView" prefHeight="200.0" prefWidth="200.0">
                   <columns>
                       <TableColumn fx:id="video" prefWidth="75.0" text="影片名稱"/>
                       <TableColumn fx:id="time" prefWidth="75.0" text="當前播放時間"/>

@@ -46,7 +46,7 @@ else:  # TODO 下載單支影片
         if not video_download(video, title):
             print(123)
             sys.exit(3)
-        CsvHandler.insertNewVideotoList(title=title, output_path=output_path)
+        CsvHandler.insertNewVideotoList(title=title, path=output_path)
         sys.exit(0)  # TODO 表示成功下載
     except Exception as e:
         print(e)

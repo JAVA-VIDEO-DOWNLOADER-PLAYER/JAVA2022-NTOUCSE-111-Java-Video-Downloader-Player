@@ -12,7 +12,7 @@ public class OSVaildator { // TODO
         return os.contains("mac");
     }
 
-    protected static boolean isWindows() {
+    public static boolean isWindows() {
         return os.contains("win");
     }
 
