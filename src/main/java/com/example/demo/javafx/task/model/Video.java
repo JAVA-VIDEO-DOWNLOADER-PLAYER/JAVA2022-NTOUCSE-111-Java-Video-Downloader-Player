@@ -3,6 +3,9 @@ package com.example.demo.javafx.task.model;
 import com.opencsv.bean.CsvBindByPosition;
 import javafx.beans.property.SimpleStringProperty;
 
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
+
 public class Video {
     @CsvBindByPosition(position = 0)
     protected SimpleStringProperty video;
@@ -53,5 +56,15 @@ public class Video {
 
     public void setPath(String path) {
         this.path.set(path);
+    }
+
+    @Override
+    public String toString() {
+        // String s2 = new String(s1.getBytes(“ISO-8859-1”),”GBK”)
+        return ("Video{" +
+                "video=" + video.get() +
+                ", time=" + time.get() +
+                ", path=" + path.get() +
+                '}');
     }
 }

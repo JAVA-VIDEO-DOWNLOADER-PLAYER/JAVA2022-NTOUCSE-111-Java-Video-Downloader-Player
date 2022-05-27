@@ -23,6 +23,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
+import org.w3c.dom.events.MouseEvent;
 
 
 public class Controller implements Initializable  {
@@ -64,29 +65,6 @@ public class Controller implements Initializable  {
         }
         VideoListView.setItems(list);
     }
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        video.setCellValueFactory(cellData->cellData.getValue().videoProperty());
-        time.setCellValueFactory(cellData->cellData.getValue().timeProperty());
-        path.setCellValueFactory(cellData->cellData.getValue().pathProperty());
-        borderPane.prefWidthProperty().bind(vBox.widthProperty());//寬度繫結為Pane寬度
-        borderPane.prefHeightProperty().bind(vBox.heightProperty());
-        scroll.prefHeightProperty().bind(borderPane.heightProperty());
-        VideoListView.prefHeightProperty().bind(scroll.heightProperty());
-        try {
-            initList();
-        } catch (IOException | CsvValidationException e) {
-            throw new RuntimeException(e);
-        }
-        VideoListView.refresh();
-
-    }
-
-    @FXML
-    protected void onSubmitJButtonClick(){
-        invokeDownloaderTask();
-    }
-
     private void invokeDownloaderTask(){
         String fetchFromVideoUrlField = VideoUrlField.getText();
         String fetchFromSavePathField = SavePathField.getText();
@@ -112,6 +90,29 @@ public class Controller implements Initializable  {
         backgroundThread.start();
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        video.setCellValueFactory(cellData->cellData.getValue().videoProperty());
+        time.setCellValueFactory(cellData->cellData.getValue().timeProperty());
+        path.setCellValueFactory(cellData->cellData.getValue().pathProperty());
+        borderPane.prefWidthProperty().bind(vBox.widthProperty());//寬度繫結為Pane寬度
+        borderPane.prefHeightProperty().bind(vBox.heightProperty());
+        scroll.prefHeightProperty().bind(borderPane.heightProperty());
+        VideoListView.prefHeightProperty().bind(scroll.heightProperty());
+        try {
+            initList();
+        } catch (IOException | CsvValidationException e) {
+            throw new RuntimeException(e);
+        }
+        VideoListView.refresh();
+
+    }
+
+    @FXML
+    protected void onSubmitJButtonClick(){
+        invokeDownloaderTask();
+    }
+
     @FXML
     protected void onBroswerJButtonClick(){
         // TODO 實作 JavaFX DirectoryChooser
@@ -128,5 +129,12 @@ public class Controller implements Initializable  {
         }else
             SavePathField.setText("");
     }
-
+    @FXML
+    protected void onSelectedItemClick(javafx.scene.input.MouseEvent mouseEvent) {
+        Video video = VideoListView.getSelectionModel().getSelectedItem();
+        if (video == null)
+            System.out.println("Nothing.");
+        else
+            System.out.println(video);
+    }
 }
