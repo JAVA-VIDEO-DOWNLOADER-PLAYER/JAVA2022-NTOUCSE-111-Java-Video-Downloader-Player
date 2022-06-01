@@ -131,10 +131,12 @@ public class Controller implements Initializable  {
     }
     @FXML
     protected void onSelectedItemClick(javafx.scene.input.MouseEvent mouseEvent) {
-        Video video = VideoListView.getSelectionModel().getSelectedItem();
-        if (video == null)
-            System.out.println("Nothing.");
-        else
-            System.out.println(video);
+        if (mouseEvent.getClickCount()>=2){
+            Video video = VideoListView.getSelectionModel().getSelectedItem();
+            if (video == null)
+                System.out.println("Nothing.");
+            else
+                System.out.println(video);
+        }
     }
 }

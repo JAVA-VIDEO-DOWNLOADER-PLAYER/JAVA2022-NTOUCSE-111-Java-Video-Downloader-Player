@@ -13,7 +13,7 @@ public class JavaMainGuiTest extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        DownloaderTask.runCommand();
+        DownloaderTask.runCommand(); // 更新 python 套件
         FXMLLoader fxmlLoader = new FXMLLoader(JavaMainGuiTest.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1000, 600); //
         Controller controller = new Controller();

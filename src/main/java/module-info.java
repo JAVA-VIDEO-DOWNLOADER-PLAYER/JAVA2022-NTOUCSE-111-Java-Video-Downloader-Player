@@ -14,6 +14,8 @@ module com.example.demo {
     requires com.opencsv;
     requires commons.beanutils;
     requires java.sql;
+//    requires uk.co.caprica.vlcj;
+//    requires uk.co.caprica.vlcj.javafx;
 //    requires opencsv;
 
     exports com.example.demo;

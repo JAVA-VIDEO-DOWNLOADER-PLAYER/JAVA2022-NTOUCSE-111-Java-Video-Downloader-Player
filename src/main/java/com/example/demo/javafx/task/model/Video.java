@@ -61,6 +61,7 @@ public class Video {
     @Override
     public String toString() {
         // String s2 = new String(s1.getBytes(“ISO-8859-1”),”GBK”)
+        // 之後選項名稱轉換要多一點!!才可以捕捉到正確影片
         return ("Video{" +
                 "video=" + video.get() +
                 ", time=" + time.get() +
