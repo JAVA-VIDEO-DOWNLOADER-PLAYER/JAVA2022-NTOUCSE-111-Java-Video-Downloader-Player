@@ -1,67 +1,115 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.media.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.media.MediaView?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<VBox fx:id="vBox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="529.0" prefWidth="743.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.Controller">
-    <BorderPane fx:id="borderPane" prefHeight="530.0" prefWidth="821.0" style="-fx-padding: 20;">
-        <top>
-            <HBox fx:id="hbox" alignment="CENTER" prefHeight="58.0" prefWidth="743.0" style="-fx-spacing: 5;" BorderPane.alignment="CENTER">
-                <Text fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="影片URL欄位" textAlignment="RIGHT" wrappingWidth="111.64648699760437">
-                    <font>
-                        <Font name="System Bold" size="18.0" />
-                    </font>
-                </Text>
-                <TextField fx:id="VideoUrlField" prefHeight="30.0" prefWidth="246.0">
-                    <font>
-                        <Font size="14.0" />
-                    </font>
-                </TextField>
-                <Text fontSmoothingType="LCD" layoutX="10.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="存儲路徑" textAlignment="RIGHT" wrappingWidth="77.64648628234863">
-                    <font>
-                        <Font name="System Bold" size="18.0" />
-                    </font>
-                </Text>
-                <TextField fx:id="SavePathField" editable="false" prefHeight="30.0" prefWidth="132.0">
-                    <font>
-                        <Font size="14.0" />
-                    </font>
-                </TextField>
-                <Button mnemonicParsing="false" onAction="#onBroswerJButtonClick" text="瀏覽">
-                    <font>
-                        <Font name="System Bold" size="14.0" />
-                    </font>
-                </Button>
-                <Button layoutX="600.0" layoutY="25.0" mnemonicParsing="false" onAction="#onSubmitJButtonClick" text="提交">
-                    <font>
-                        <Font name="System Bold" size="14.0" />
-                    </font>
-                </Button>
-            </HBox>
-        </top>
-      <left>
-          <ScrollPane fx:id="scroll" prefHeight="382.0" prefWidth="207.0" BorderPane.alignment="CENTER">
-              <TableView fx:id="VideoListView" onMouseClicked="#onSelectedItemClick" prefHeight="200.0" prefWidth="200.0">
-                  <columns>
-                      <TableColumn fx:id="video" prefWidth="75.0" text="影片名稱" />
-                      <TableColumn fx:id="time" prefWidth="75.0" text="當前播放時間" />
-                      <TableColumn fx:id="path" prefWidth="75.0" text="路徑" />
-                  </columns>
-              </TableView>
-          </ScrollPane>
-      </left>
-      <bottom>
-          <VBox prefHeight="49.0" prefWidth="703.0" BorderPane.alignment="CENTER">
-              <Slider />
-              <ToolBar prefHeight="40.0" prefWidth="200.0">
-                  <Button mnemonicParsing="false" text="Button" />
-              </ToolBar>
-          </VBox>
-      </bottom>
-      <center>
-         <MediaView fitHeight="200.0" fitWidth="200.0" BorderPane.alignment="CENTER" />
-      </center>
-    </BorderPane>
-</VBox>
+<AnchorPane fx:id="Anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="542.0" prefWidth="764.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.Controller">
+    <StackPane fx:id="stackpane" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <MediaView fx:id="backview" fitHeight="542.0" fitWidth="764.0" StackPane.alignment="CENTER" />
+    </StackPane>
+    <VBox fx:id="vBox" alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="529.0" prefWidth="743.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <HBox fx:id="hbox_t" alignment="CENTER_RIGHT" prefHeight="54.0" prefWidth="764.0"
+              style="-fx-spacing: 5; -fx-background-color: #375aa1;">
+            <padding>
+                <Insets right="10.0"/>
+            </padding>
+            <Button fx:id="minusbtn" graphicTextGap="0.0" mnemonicParsing="false" onAction="#windowmin"
+                    style="-fx-border-radius: 360; -fx-background-radius: 360; -fx-background-color: #375aa1;"/>
+            <Button fx:id="resizebtn" graphicTextGap="0.0" layoutX="704.0" layoutY="12.0" mnemonicParsing="false"
+                    onAction="#windowresize"
+                    style="-fx-border-radius: 360; -fx-background-radius: 360; -fx-background-color: #375aa1;"/>
+            <Button fx:id="closebtn" graphicTextGap="0.0" layoutX="704.0" layoutY="12.0" mnemonicParsing="false"
+                    onAction="#windowsclose"
+                    style="-fx-border-radius: 360; -fx-background-radius: 360; -fx-background-color: #375aa1;"/>
+        </HBox>
+        <BorderPane fx:id="borderPane" prefHeight="530.0" prefWidth="821.0" style="-fx-padding: 20; -fx-background-color: #ffffff67; -fx-background-radius: 70px;">
+            <top>
+                <HBox fx:id="hbox" alignment="CENTER" prefHeight="58.0" prefWidth="743.0" style="-fx-spacing: 5;" BorderPane.alignment="CENTER">
+                    <Text fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="影片URL欄位" textAlignment="RIGHT" wrappingWidth="111.64648699760437">
+                        <font>
+                            <Font name="System Bold" size="18.0" />
+                        </font>
+                    </Text>
+                    <TextField fx:id="VideoUrlField" prefHeight="30.0" prefWidth="246.0">
+                        <font>
+                            <Font size="14.0" />
+                        </font>
+                    </TextField>
+                    <Text fontSmoothingType="LCD" layoutX="10.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="存儲路徑" textAlignment="RIGHT" wrappingWidth="77.64648628234863">
+                        <font>
+                            <Font name="System Bold" size="18.0" />
+                        </font>
+                    </Text>
+                    <TextField fx:id="SavePathField" editable="false" prefHeight="30.0" prefWidth="132.0">
+                        <font>
+                            <Font size="14.0" />
+                        </font>
+                    </TextField>
+                    <Button mnemonicParsing="false" onAction="#onBroswerJButtonClick" text="瀏覽">
+                        <font>
+                            <Font name="System Bold" size="14.0" />
+                        </font>
+                    </Button>
+                    <Button layoutX="600.0" layoutY="25.0" mnemonicParsing="false" onAction="#onSubmitJButtonClick" text="提交">
+                        <font>
+                            <Font name="System Bold" size="14.0" />
+                        </font>
+                    </Button>
+               <padding>
+                  <Insets top="-25.0" />
+               </padding>
+                </HBox>
+            </top>
+            <left>
+                <ScrollPane fx:id="scroll" prefHeight="382.0" prefWidth="207.0" BorderPane.alignment="CENTER">
+                    <TableView fx:id="VideoListView" onMouseClicked="#onSelectedItemClick" prefHeight="200.0" prefWidth="200.0">
+                        <columns>
+                            <TableColumn fx:id="video" prefWidth="75.0" text="影片名稱" />
+                            <TableColumn fx:id="time" prefWidth="75.0" text="當前播放時間" />
+                            <TableColumn fx:id="path" prefWidth="75.0" text="路徑" />
+                        </columns>
+                    </TableView>
+                </ScrollPane>
+            </left>
+            <bottom>
+                <VBox prefHeight="49.0" prefWidth="703.0" style="-fx-border-radius: 70px;" BorderPane.alignment="CENTER">
+                    <Slider fx:id="timeSlider" showTickLabels="true" />
+                    <ToolBar prefHeight="40.0" prefWidth="200.0" style="-fx-background-radius: 100px;">
+                        <Button fx:id="playbtn" mnemonicParsing="false" onAction="#play" style="-fx-background-radius: 5px;" />
+                        <Button fx:id="backwardbtn" layoutX="35.0" layoutY="10.0" mnemonicParsing="false" onAction="#backwardBtnClicked" style="-fx-background-radius: 5px;" />
+                        <Button fx:id="forwardbtn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#forwardBtnClicked" style="-fx-background-radius: 5px;" />
+                        <Button fx:id="abort" layoutX="60.0" layoutY="15.0" mnemonicParsing="false" onAction="#abort" style="-fx-background-radius: 5px;" />
+                        <Button fx:id="volume" layoutX="85.0" layoutY="15.0" mnemonicParsing="false" onAction="#volumeMute" style="-fx-background-radius: 5px;" />
+                        <Slider fx:id="volumeSlider" onScroll="#volumeScroll" />
+                        <Label fx:id="volumeLabel" text="0" />
+                    </ToolBar>
+                </VBox>
+            </bottom>
+         <center>
+                <Pane fx:id="mediaViewPane" BorderPane.alignment="CENTER">
+                    <MediaView fx:id="mediaview" fitHeight="${mediaViewPane.height}" fitWidth="${mediaViewPane.width}" BorderPane.alignment="CENTER" />
+                </Pane>
+         </center>
+        </BorderPane>
+      <effect>
+         <DropShadow color="#575757" />
+      </effect>
+    </VBox>
+</AnchorPane>

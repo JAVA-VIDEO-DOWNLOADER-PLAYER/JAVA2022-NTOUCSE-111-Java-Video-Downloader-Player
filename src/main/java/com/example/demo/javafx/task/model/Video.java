@@ -3,8 +3,6 @@ package com.example.demo.javafx.task.model;
 import com.opencsv.bean.CsvBindByPosition;
 import javafx.beans.property.SimpleStringProperty;
 
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.StandardCharsets;
 
 public class Video {
     @CsvBindByPosition(position = 0)
@@ -30,33 +28,15 @@ public class Video {
         return video;
     }
 
-    public void setVideo(String video) {
-        this.video.set(video);
-    }
+    public SimpleStringProperty pathProperty() { return path; }
+
+    public SimpleStringProperty timeProperty() { return time; }
 
     public String getTime() {
         return time.get();
     }
 
-    public SimpleStringProperty timeProperty() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time.set(time);
-    }
-
-    public String getPath() {
-        return path.get();
-    }
-
-    public SimpleStringProperty pathProperty() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path.set(path);
-    }
+    public String getPath() { return path.get(); }
 
     @Override
     public String toString() {

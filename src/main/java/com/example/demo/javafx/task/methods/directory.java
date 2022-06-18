@@ -2,7 +2,6 @@ package com.example.demo.javafx.task.methods;
 
 public class directory {
     // TODO 預設存儲資料夾之相對路徑
-    private static final String defaultPath = "\\Java-Downloader-Folder\\video";
 
     public static void main(String[] args) {
         System.out.println(getFolderPath());

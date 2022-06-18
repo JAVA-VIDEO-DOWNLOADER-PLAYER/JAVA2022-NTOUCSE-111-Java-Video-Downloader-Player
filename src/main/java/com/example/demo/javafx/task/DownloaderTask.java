@@ -1,6 +1,5 @@
 package com.example.demo.javafx.task;
 
-import com.example.demo.Controller;
 import com.example.demo.javafx.task.methods.GetPath;
 import com.example.demo.javafx.task.methods.OSVaildator;
 import javafx.concurrent.Task;
@@ -35,7 +34,7 @@ public class DownloaderTask extends Task<String> {
 
         return "下載成功";
     }
-    private boolean runCommand(String[] command) throws IOException { // 下載影片
+    public boolean runCommand(String[] command) throws IOException { // 下載影片
         //  ProcessBuilder :
         //  使用指定的操作系統程序和參數構造一個進程構建器。
         //  這是一個方便的構造函數，
@@ -69,7 +68,7 @@ public class DownloaderTask extends Task<String> {
         runCommandOutput(process);
     }
 
-    private static boolean runCommandOutput(Process process){
+    public static boolean runCommandOutput(Process process){
                 //Wait to get exit value
         try {
             int exitValue = process.waitFor();

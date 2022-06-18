@@ -7,7 +7,8 @@ import CsvHandler
 
 def video_download(video, title):  # TODO 下載單支影片
     try:
-        video.streams.order_by('resolution').desc().first().download(output_path=output_path, filename=title + ".mp4")
+        video.streams.filter(progressive=True).order_by('resolution').desc().first().download(output_path=output_path, filename=title + ".mp4")
+        # video.streams.order_by('resolution').desc().first().download(output_path=output_path, filename=title + ".mp4")
         return True
     except Exception as e:
         print(e)
@@ -30,7 +31,7 @@ if 'playlist?list=' in Video_URL:  # TODO 下載影片清單
                 if not video_download(video, title):
                     amount_failed += 1  # TODO 下載失敗跳至下一部繼續
                 else:
-                    CsvHandler.insertNewVideotoList(title=title, output_path=output_path)
+                    CsvHandler.insertNewVideotoList(title=title, path=output_path)
             except Exception:
                 amount_failed += 1  # TODO 無法下載跳至下一部繼續
 
@@ -43,10 +44,10 @@ else:  # TODO 下載單支影片
     try:
         video = YouTube(Video_URL)
         title = re.sub('[\/:*?"<>|]', '-', video.title)
-        if not video_download(video, title):
+        if not video_download(video, title.replace(' ', '')):
             print(123)
             sys.exit(3)
-        CsvHandler.insertNewVideotoList(title=title, path=output_path)
+        CsvHandler.insertNewVideotoList(title=title.replace(' ', ''), path=output_path)
         sys.exit(0)  # TODO 表示成功下載
     except Exception as e:
         print(e)

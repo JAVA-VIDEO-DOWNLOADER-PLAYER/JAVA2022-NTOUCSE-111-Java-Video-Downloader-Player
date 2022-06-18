@@ -1,6 +1,6 @@
 import os.path
 import re
-
+import sys
 import pandas as pd
 import numpy as np
 
@@ -12,7 +12,7 @@ def insertNewVideotoList(title, path):
         sheet = pd.read_csv('test.csv', header=0)
         for index in range(len(sheet)):
             videoInCsv = sheet.loc[index, "video"]
-            if videoInCsv == InsertTitle or os.path.abspath(path+title)==True:
+            if videoInCsv == InsertTitle or os.path.abspath(path + title) == True:
                 return
         data = np.array([(title, '0', os.path.abspath(path))])
         Newdf = pd.DataFrame(data=data, columns=['video', 'time', 'path'])
@@ -27,11 +27,11 @@ def insertNewVideotoList(title, path):
         data = np.array([(title, '0', os.path.abspath(path))])
         df = pd.DataFrame(data=data, columns=['video', 'time', 'path'])
         df.to_csv("test.csv", index=False)
-#
-# if __name__ =="__main__":
-#     data = np.array([('JavaFX Java GUI Tutorial - 18 - Simple TableView', '0', os.path.abspath('D:\\'))])
-#     Newdf = pd.DataFrame(data=data, columns=['video', 'time', 'path'])
-#     print(Newdf)
 
-
-
+def updateCsv(title, time):
+    print(title)
+    print(time)
+    data = pd.read_csv('test.csv', header=0)
+    data.loc[data['video'] == title , 'time' ] = str(time)
+    data.to_csv('test.csv',index=False, encoding='utf-8')
+    sys.exit(0)
