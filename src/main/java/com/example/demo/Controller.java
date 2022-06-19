@@ -8,6 +8,7 @@ import com.opencsv.CSVReaderBuilder;
 import com.opencsv.RFC4180Parser;
 import com.opencsv.RFC4180ParserBuilder;
 import com.opencsv.exceptions.CsvValidationException;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -279,13 +280,17 @@ public class Controller implements Initializable  {
         String commandPrefix = (OSVaildator.isWindows()) ? ("python") : ("python3");
         String[] command = {commandPrefix, "-c", funName};
         //  執行 command
-        try {
-            if (runCommand(command)){
-                System.out.println("更新成功");
+        Thread runCommamdTask = new Thread(()->{
+            try {
+                if (runCommand(command)){
+                    System.out.println("更新成功");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        });
+        runCommamdTask.setDaemon(true);
+        runCommamdTask.start();
     }
     @FXML
     protected void onSelectedItemClick(javafx.scene.input.MouseEvent mouseEvent) throws UnsupportedEncodingException {
@@ -447,10 +452,9 @@ public class Controller implements Initializable  {
                 // Mute...
                 volume.setGraphic(volumeMuteIcon);
                 // 設置 volume
-                player.setMute(true);
+                player.setVolume(0);
             }else {
                 volume.setGraphic(volumeIcon);
-                player.setMute(false);
                 volumeSlider.setValue(volumeVal);
                 player.setVolume(volumeVal*0.01);
             }
