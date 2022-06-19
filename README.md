@@ -16,6 +16,13 @@
 > link:
 > - [JAVA 程式設計：期末專案.pptx](https://docs.google.com/presentation/d/1AsxUBcvZMzqE3dpWKKijy38BUeFqqr1G/edit#slide=id.g13520a4605b_0_0)
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/qkkOwwR9dgs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in picture" allowfullscreen></iframe>
 
-日期: 2022/06/18
+#### [Mac 展示](https://www.youtube.com/embed/qkkOwwR9dgs``)
+
+https://user-images.githubusercontent.com/58461634/174462835-8ee620a8-55fa-426c-830b-3a61a10d4ee2.mp4
+
+#### [Window 11 展示](#)
+
+
+
+### 日期: 2022/06/18
