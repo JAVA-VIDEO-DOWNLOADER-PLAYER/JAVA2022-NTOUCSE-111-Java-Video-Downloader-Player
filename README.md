@@ -16,6 +16,6 @@
 > link:
 > - [JAVA 程式設計：期末專案.pptx](https://docs.google.com/presentation/d/1AsxUBcvZMzqE3dpWKKijy38BUeFqqr1G/edit#slide=id.g13520a4605b_0_0)
 
-<iframe border=0 frameborder=0 src="https://youtu.be/qkkOwwR9dgs"></iframe>
+<iframe src="https://youtu.be/qkkOwwR9dgs"></iframe>
 
 日期: 2022/06/18
