@@ -21,7 +21,7 @@
 
 https://user-images.githubusercontent.com/58461634/174462835-8ee620a8-55fa-426c-830b-3a61a10d4ee2.mp4
 
-#### [Window 11 展示](#)
+#### [Window 11 展示(Latest version)](#)
 
 日後補上!!😁
 
