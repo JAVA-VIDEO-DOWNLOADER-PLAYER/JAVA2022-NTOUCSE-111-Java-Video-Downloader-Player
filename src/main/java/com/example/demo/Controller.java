@@ -8,7 +8,6 @@ import com.opencsv.CSVReaderBuilder;
 import com.opencsv.RFC4180Parser;
 import com.opencsv.RFC4180ParserBuilder;
 import com.opencsv.exceptions.CsvValidationException;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -30,7 +29,6 @@ import java.util.Arrays;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import javafx.util.Duration;
-import static com.example.demo.javafx.task.DownloaderTask.runCommandOutput;
 import static java.lang.Thread.sleep;
 
 public class Controller implements Initializable  {
@@ -199,7 +197,7 @@ public class Controller implements Initializable  {
         });
         try {
             backgroundVideoTask.start();
-            sleep(1300);
+            sleep(2000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -297,11 +295,14 @@ public class Controller implements Initializable  {
 
         if (mouseEvent.getClickCount()>=2){
             Video video = VideoListView.getSelectionModel().getSelectedItem();
+            int index = VideoListView.getSelectionModel().getFocusedIndex();
             if (video == null)
                 System.out.println("Nothing.");
             else {
                 String VideoPath = new File(video.getPath().
                         replaceAll( "\\\\ ",   "\\\\\\\\\\")+"\\"+video.getVideo()+".mp4").toURI().toString();
+                System.out.println(VideoPath);
+                System.out.println("video index: "+index);
                 VideoPath = new String(VideoPath.getBytes("ISO8859-1"), StandardCharsets.UTF_8);
                 System.out.println(VideoPath);
                 try {
@@ -404,9 +405,11 @@ public class Controller implements Initializable  {
         probuilder.directory(new File(projectPath));
         //  執行 command
         Process process = probuilder.start();
-        return runCommandOutput(process);
+        return DownloaderTask.runCommandOutput(process);
 
     }
+
+
     @FXML
     public void abort(ActionEvent event) {
         try {

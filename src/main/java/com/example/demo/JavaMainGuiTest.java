@@ -2,23 +2,18 @@ package com.example.demo;
 
 import com.example.demo.javafx.task.DownloaderTask;
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
 import java.io.IOException;
-import java.util.Objects;
 
 public class JavaMainGuiTest extends Application {
 
 
     @Override
     public void start(Stage stage) throws IOException {
-        DownloaderTask.runCommand(); // 更新 python 套件
+        //DownloaderTask.runCommand(); // 更新 python 套件
         FXMLLoader fxmlLoader = new FXMLLoader(JavaMainGuiTest.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1000, 600); //
         stage.initStyle(StageStyle.UNDECORATED);

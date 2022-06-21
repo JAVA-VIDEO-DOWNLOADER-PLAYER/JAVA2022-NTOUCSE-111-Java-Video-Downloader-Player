@@ -72,12 +72,16 @@ public class DownloaderTask extends Task<String> {
                 //Wait to get exit value
         try {
             int exitValue = process.waitFor();
+
             System.out.println("\n\nExit Value is " + exitValue);
+
             return exitValue == 0;
         } catch (InterruptedException e) {
             //  Auto-generated catch block
             return false;
         }
     }
+
+
 
 }
