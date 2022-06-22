@@ -10,13 +10,10 @@ module com.example.demo {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
-//    requires commons.io;
     requires com.opencsv;
     requires commons.beanutils;
     requires java.sql;
-//    requires uk.co.caprica.vlcj;
-//    requires uk.co.caprica.vlcj.javafx;
-//    requires opencsv;
+
 
     exports com.example.demo;
     exports com.example.demo.javafx.task;
