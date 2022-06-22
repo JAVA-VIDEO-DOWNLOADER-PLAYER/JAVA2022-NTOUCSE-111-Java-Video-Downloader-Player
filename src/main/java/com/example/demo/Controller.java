@@ -15,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.*;
 import javafx.scene.media.Media;
@@ -32,6 +33,15 @@ import javafx.util.Duration;
 import static java.lang.Thread.sleep;
 
 public class Controller implements Initializable  {
+    public Region resizeLeftTop;
+    public Region resizeLeftBorder;
+    public Region resizeLeftBottom;
+    public Region resizeTopBorder;
+    public Region resizeBottomBorder;
+    public Region resizeRightTop;
+    public Region resizeRightBorder;
+    public Region resizeRightBottom;
+    public GridPane gridpane;
     private double xOffset = 0;
     private double yOffset = 0;
     public Button playbtn;
@@ -92,12 +102,14 @@ public class Controller implements Initializable  {
     private TableColumn<Video, String> time;
     @FXML
     private TableColumn<Video, String> path;
-
-
     static double volumeVal=15.0d;
-    public Controller() throws FileNotFoundException {
-    }
+    static boolean max = false;
+    static double winH;
+    static double winW;
+    static boolean alertwindows = false;
+    private Stage stage;
 
+    public Controller() throws FileNotFoundException {}
     public void initList() throws IOException, CsvValidationException {
         FileReader file = new FileReader("src/main/java/com/example/demo/javafx/task/python/test.csv", StandardCharsets.UTF_8);
         RFC4180Parser rfc4180Parser = new RFC4180ParserBuilder().build();
@@ -138,49 +150,31 @@ public class Controller implements Initializable  {
         backgroundThread.setDaemon(true);
         backgroundThread.start();
     }
-    static boolean max = false;
-    static double winH;
-    static double winW;
-    static boolean alertwindows = false;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        minIcon.setFitWidth(25);
-        minIcon.setFitHeight(25);
-        minusIcon.setFitWidth(25);
-        minusIcon.setFitHeight(25);
-        resizeIcon.setFitWidth(25);
-        resizeIcon.setFitHeight(25);
-        closeIcon.setFitWidth(25);
-        closeIcon.setFitHeight(25);
-        stopIcon.setFitWidth(30);
-        stopIcon.setFitHeight(30);
-        playIcon.setFitWidth(30);
-        playIcon.setFitHeight(30);
-        pauseIcon.setFitHeight(30);
-        pauseIcon.setFitWidth(30);
-        nextIcon.setFitWidth(30);
-        nextIcon.setFitHeight(30);
-        preIcon.setFitHeight(30);
-        preIcon.setFitWidth(30);
-        volumeIcon.setFitHeight(30);
-        volumeIcon.setFitWidth(30);
-        volumeMuteIcon.setFitHeight(30);
-        volumeMuteIcon.setFitWidth(30);
-        playbtn.setGraphic(playIcon);
-        forwardbtn.setGraphic(nextIcon);
-        backwardbtn.setGraphic(preIcon);
-        volume.setGraphic(volumeIcon);
-        abort.setGraphic(stopIcon);
-        minusbtn.setGraphic(minusIcon);
-        closebtn.setGraphic(closeIcon);
-        resizebtn.setGraphic(resizeIcon);
+        minIcon.setFitWidth(25); minIcon.setFitHeight(25);
+        minusIcon.setFitWidth(25); minusIcon.setFitHeight(25);
+        resizeIcon.setFitWidth(25); resizeIcon.setFitHeight(25);
+        closeIcon.setFitWidth(25); closeIcon.setFitHeight(25);
+        stopIcon.setFitWidth(30); stopIcon.setFitHeight(30);
+        playIcon.setFitWidth(30); playIcon.setFitHeight(30);
+        pauseIcon.setFitHeight(30); pauseIcon.setFitWidth(30);
+        nextIcon.setFitWidth(30); nextIcon.setFitHeight(30);
+        preIcon.setFitHeight(30); preIcon.setFitWidth(30);
+        volumeIcon.setFitHeight(30); volumeIcon.setFitWidth(30);
+        volumeMuteIcon.setFitHeight(30); volumeMuteIcon.setFitWidth(30);
+        playbtn.setGraphic(playIcon); forwardbtn.setGraphic(nextIcon); backwardbtn.setGraphic(preIcon); volume.setGraphic(volumeIcon);
+        abort.setGraphic(stopIcon); minusbtn.setGraphic(minusIcon); closebtn.setGraphic(closeIcon); resizebtn.setGraphic(resizeIcon);
         video.setCellValueFactory(cellData->cellData.getValue().videoProperty());
         time.setCellValueFactory(cellData->cellData.getValue().timeProperty());
         path.setCellValueFactory(cellData->cellData.getValue().pathProperty());
-        vBox.prefHeightProperty().bind(Anchor.heightProperty());
-        vBox.prefWidthProperty().bind(Anchor.widthProperty());
+        gridpane.prefHeightProperty().bind(Anchor.heightProperty());
+        gridpane.prefWidthProperty().bind(Anchor.widthProperty());
+        vBox.prefHeightProperty().bind(Anchor.heightProperty().subtract(20.0d));
+        vBox.prefWidthProperty().bind(gridpane.widthProperty().subtract(20.0d));
         stackpane.prefHeightProperty().bind(Anchor.heightProperty());
         stackpane.prefWidthProperty().bind(Anchor.widthProperty());
+
         backview.fitHeightProperty().bind(stackpane.heightProperty());
         backview.fitWidthProperty().bind(stackpane.widthProperty());
         borderPane.prefWidthProperty().bind(vBox.widthProperty());//寬度繫結為Pane寬度
@@ -236,16 +230,19 @@ public class Controller implements Initializable  {
         });
         hbox_t.setOnMouseDragged(event -> {
             Stage stage = (Stage) hbox_t.getScene().getWindow();
-            stage.setMaximized(false);
-            stage.setHeight(600.0);
-            stage.setWidth(1000.0);
-            winH=600.0;
-            winW=1000.0;
+            if (stage.isMaximized()){
+                stage.setMaximized(false);
+                stage.setHeight(600.0);
+                stage.setWidth(1000.0);
+                winH=600.0;
+                winW=1000.0;
+            }
             stage.setX(event.getScreenX() - xOffset);
             stage.setY(event.getScreenY() - yOffset);
             resizebtn.setGraphic(resizeIcon);
             max = false;
         });
+
     }
     @FXML
     protected void onSubmitJButtonClick(){
@@ -408,8 +405,6 @@ public class Controller implements Initializable  {
         return DownloaderTask.runCommandOutput(process);
 
     }
-
-
     @FXML
     public void abort(ActionEvent event) {
         try {
@@ -510,5 +505,78 @@ public class Controller implements Initializable  {
         Stage stage = (Stage) closebtn.getScene().getWindow();
         // do what you have to do
         stage.close();
+    }
+
+    private double stageW,stageH,stageX,stageY,offsetX,offsetY;
+    public void mousePressed(MouseEvent event){
+        stageW = stage.getWidth();
+        stageH = stage.getHeight();
+        stageX = stage.getX();
+        stageY = stage.getY();
+        offsetX = event.getSceneX();
+        offsetY = event.getSceneY();
+        event.consume();
+    }
+
+    public void setStage(Stage stage){
+        this.stage=stage;
+    }
+
+    public void resizeDrag(double x, double y, boolean n, boolean e, boolean s, boolean w){
+        if (n & stageH + stageY - y >= 600){
+            stage.setY(y - offsetY);
+            winH = Math.max(600.0d, stageH + stageY + offsetY - y);
+            stage.setHeight(winH);
+        }
+        if (e){
+            winW = Math.max(1000.0d, x + stageW - offsetX - stage.getX());
+            stage.setWidth(Math.max(1000.0d, x + stageW - offsetX - stage.getX()));
+        }
+        if (s){
+            winH = Math.max(600.0d, y + stageH - offsetY - stage.getY());
+            stage.setHeight(winH);
+        }
+        if (w && stageW + stageX - x - offsetX >= 1000.0d){
+            stage.setX(x - offsetX);
+            winW = Math.max(1000.0d, stageW + stageX -x - offsetX);
+            stage.setWidth(Math.max(1000.0d, stageW + stageX -x - offsetX));
+        }
+    }
+//    public void movementDrag(MouseEvent event){
+//        stage.setX(event.getScreenX() - offsetX);
+//        stage.setY(event.getScreenY() - offsetY);
+//        event.consume();
+//    }
+    public void resizeDragE(MouseEvent event){
+        resizeDrag(event.getScreenX(), event.getScreenY(), false, true, false, false);
+        event.consume();
+    }
+    public void resizeDragN(MouseEvent event){
+        resizeDrag(event.getScreenX(), event.getScreenY(), true, false, false, false);
+        event.consume();
+    }
+    public void resizeDragNE(MouseEvent event){
+        resizeDrag(event.getScreenX(), event.getScreenY(), true, true, false, false);
+        event.consume();
+    }
+    public void resizeDragNW(MouseEvent event){
+        resizeDrag(event.getScreenX(), event.getScreenY(), true, false, false, true);
+        event.consume();
+    }
+    public void resizeDragS(MouseEvent event){
+        resizeDrag(event.getScreenX(), event.getScreenY(), false, false, true, false);
+        event.consume();
+    }
+    public void resizeDragSW(MouseEvent event){
+        resizeDrag(event.getScreenX(), event.getScreenY(), false, false, true, true);
+        event.consume();
+    }
+    public void resizeDragSE(MouseEvent event){
+        resizeDrag(event.getScreenX(), event.getScreenY(), false, true, true, false);
+        event.consume();
+    }
+    public void resizeDragW(MouseEvent event){
+        resizeDrag(event.getScreenX(), event.getScreenY(), false, false, false, true);
+        event.consume();
     }
 }
