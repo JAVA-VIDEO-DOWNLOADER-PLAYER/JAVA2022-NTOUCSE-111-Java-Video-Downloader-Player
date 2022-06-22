@@ -21,8 +21,8 @@
 
 https://user-images.githubusercontent.com/58461634/174462835-8ee620a8-55fa-426c-830b-3a61a10d4ee2.mp4
 
-#### [Window 11 展示(Latest version)](#)
+#### [Window 11 展示(Latest version): 完整說明版]
 
-https://youtu.be/itm7ee0Pb3U
+[https://youtu.be/itm7ee0Pb3U](https://youtu.be/SwseZn5R7uY)
 
 ### 日期: 2022/06/18
