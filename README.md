@@ -23,6 +23,9 @@ https://user-images.githubusercontent.com/58461634/174462835-8ee620a8-55fa-426c-
 
 #### [Window 11 展示(Latest version): 完整說明版]
 
-[https://youtu.be/itm7ee0Pb3U](https://youtu.be/SwseZn5R7uY)
 
-### 日期: 2022/06/18
+[![[https://youtu.be/itm7ee0Pb3U](https://youtu.be/SwseZn5R7uY)](https://user-images.githubusercontent.com/58461634/175202318-e537ed0d-3b87-4d9b-afff-b1ac73ed3550.png)]
+
+
+### 日期: 2022/06/22!
+
