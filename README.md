@@ -17,7 +17,7 @@
 > - [JAVA 程式設計：期末專案.pptx](https://docs.google.com/presentation/d/1AsxUBcvZMzqE3dpWKKijy38BUeFqqr1G/edit#slide=id.g13520a4605b_0_0)
 
 
-#### [Mac 展示](https://www.youtube.com/embed/qkkOwwR9dgs``)
+#### [Mac 展示]
 
 {% include youtubePlayer.html id="qkkOwwR9dgs" %}
 
