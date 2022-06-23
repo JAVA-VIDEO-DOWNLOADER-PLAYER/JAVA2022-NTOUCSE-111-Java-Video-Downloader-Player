@@ -23,7 +23,7 @@ https://user-images.githubusercontent.com/58461634/174462835-8ee620a8-55fa-426c-
 
 #### [Window 11 展示(Latest version): 完整說明版]
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/SwseZn5R7uY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+{% include youtubePlayer.html id="SwseZn5R7uY" %}
 
 
 
