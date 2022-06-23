@@ -18,11 +18,11 @@
 
 
 #### [Mac 展示]
-{% include youtubePlayer.html id="qkkOwwR9dgs" %}
+<iframe width="560" height="315" src="https://www.youtube.com/embed/qkkOwwR9dgs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 #### [Window 11 展示(Latest version): 完整說明版]
-{% include youtubePlayer.html id="SwseZn5R7uY" %}
+<iframe width="560" height="315" src="https://www.youtube.com/embed/SwseZn5R7uY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 
