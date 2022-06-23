@@ -23,9 +23,7 @@ https://user-images.githubusercontent.com/58461634/174462835-8ee620a8-55fa-426c-
 
 #### [Window 11 展示(Latest version): 完整說明版]
 
-
-[![[https://youtu.be/itm7ee0Pb3U](https://youtu.be/SwseZn5R7uY)](https://user-images.githubusercontent.com/58461634/175202318-e537ed0d-3b87-4d9b-afff-b1ac73ed3550.png)]
-
+<iframe width="560" height="315" src="https://www.youtube.com/embed/SwseZn5R7uY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 
