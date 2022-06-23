@@ -19,11 +19,10 @@
 
 #### [Mac 展示]
 
-{% include youtubePlayer.html id="qkkOwwR9dgs" %}
+
 
 #### [Window 11 展示(Latest version): 完整說明版]
 
-{% include youtubePlayer.html id="SwseZn5R7uY" %}
 
 
 ### 日期: 2022/06/22!
