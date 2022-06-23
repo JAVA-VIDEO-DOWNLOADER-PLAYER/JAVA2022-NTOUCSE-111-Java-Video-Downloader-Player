@@ -26,6 +26,5 @@ https://user-images.githubusercontent.com/58461634/174462835-8ee620a8-55fa-426c-
 {% include youtubePlayer.html id="SwseZn5R7uY" %}
 
 
-
 ### 日期: 2022/06/22!
 
