@@ -18,12 +18,14 @@
 
 
 #### [Mac 展示]
+<p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/qkkOwwR9dgs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
+</p>
 
 #### [Window 11 展示(Latest version): 完整說明版]
+<p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/SwseZn5R7uY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
+</p>
 
 
 ### 日期: 2022/06/22!
