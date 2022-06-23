@@ -19,7 +19,7 @@
 
 #### [Mac 展示](https://www.youtube.com/embed/qkkOwwR9dgs``)
 
-https://user-images.githubusercontent.com/58461634/174462835-8ee620a8-55fa-426c-830b-3a61a10d4ee2.mp4
+{% include youtubePlayer.html id="qkkOwwR9dgs" %}
 
 #### [Window 11 展示(Latest version): 完整說明版]
 
